@@ -7,7 +7,10 @@ app.use(express.json());
 app.use(cookieParser());
 // app.use(express.urlencoded());
 
-import authRouter from "./routes/auth.route.js";
-app.use("/api/auth", authRouter);
+import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js"
+
+app.use("/api/auth", authRoutes);
+app.use("/api/message", messageRoutes);
 
 export { app };
