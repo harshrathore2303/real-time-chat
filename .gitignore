@@ -1,0 +1,46 @@
+# Ignore environment files
+.env
+.env.*
+
+# Ignore logs
+logs
+*.log
+
+# Ignore OS system files
+.DS_Store
+Thumbs.db
+
+# Node.js dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+dist/
+build/
+**/dist/
+**/build/
+
+# Cache
+.cache/
+.parcel-cache/
+.next/
+out/
+.nuxt/
+.svelte-kit/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Ignore IDE/editor config
+.vscode/
+.idea/
+
+# Others
+*.tgz
+*.tsbuildinfo
+
+# Optional
+yarn.lock
+pnpm-lock.yaml
+.env
