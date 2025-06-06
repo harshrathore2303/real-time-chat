@@ -15,8 +15,8 @@ router.post("/login", login);
 
 router.post("/logout", logout);
 
-router.put("/profile", verifyJWT, updateProfile);
+router.put("/update-profile", verifyJWT, updateProfile);
 
-router.get("/check", verifyJWT, checkAuth)
+router.get("/check", verifyJWT, checkAuth);
 
 export default router;
