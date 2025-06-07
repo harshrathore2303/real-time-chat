@@ -18,7 +18,7 @@ const signup = asyncHandler(async (req, res) => {
   const existed = await User.findOne({ email });
 
   if (existed) {
-    return res.status(400).json({ message: "Email already exists" });
+    return res.status(409).json({ message: "Email already exists" });
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -52,7 +52,7 @@ const login = asyncHandler(async (req, res) => {
   });
 
   if (!existedUser) {
-    return res.status(400).json({ message: "User not found"});
+    return res.status(404).json({ message: "User not found"});
   }
 
   const isPasswordCorrect = await bcrypt.compare(
@@ -72,7 +72,7 @@ const login = asyncHandler(async (req, res) => {
 });
 
 const logout = asyncHandler(async (req, res) => {
-  res.cookie("jwt", "", { maxAge: 0 });
+  res.clearCookie("jwt");
   res.status(200).json({message: "Loggout Successfully"});
 });
 

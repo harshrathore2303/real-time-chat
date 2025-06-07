@@ -3,7 +3,7 @@ import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
-const BASE_URL = "http://localhost:5001";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
 
 const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -17,7 +17,6 @@ const useAuthStore = create((set, get) => ({
   checkAuth: async () => {
     try {
       const res = await axiosInstance.get("/auth/check");
-      // console.log(res)
       set({ authUser: res.data });
       get().connectSocket();
     } catch (error) {
@@ -45,12 +44,10 @@ const useAuthStore = create((set, get) => ({
     set({ isLoggingIn: true });
     try {
       const res = await axiosInstance.post("/auth/login", data);
-      // console.log(res.data);
       set({ authUser: res.data });
       toast.success("Logged in successfully");
       get().connectSocket();
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     } finally {
       set({ isLoggingIn: false });
@@ -75,7 +72,6 @@ const useAuthStore = create((set, get) => ({
       set({ authUser: res.data });
       toast.success("Profile Uploaded");
     } catch (error) {
-      console.log("error in updating profile", error);
       toast.error(error.response?.data?.message || "Update failed");
     } finally {
       set({ isUpdatingProfile: false });

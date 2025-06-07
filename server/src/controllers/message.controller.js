@@ -11,7 +11,7 @@ const getUsersForSidebar = asyncHandler(async (req, res) => {
     "-password"
   );
 
-  res.status(200).json(new ApiResponse(200, filteredUsers));
+  res.status(200).json(filteredUsers);
 });
 
 const getMessages = asyncHandler(async (req, res) => {
